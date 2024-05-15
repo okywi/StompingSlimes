@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -29,10 +30,14 @@ public class VeganLand extends ApplicationAdapter {
 	public static Player player;
 	static Map map = new Map();
 	public static int level = 1;
+	public static int score = 0;
+	public static String scoreString = "Score " + score;
 	public static Flag flag;
 	public static boolean isGameOver = false;
-
 	public static String gameState = "menu";
+	public static String levelString = "Level " + level;
+	public int levelStringOffset = 40;
+	public int scoreStringOffset = 40;
 	Button menuButton;
 	Button playButton;
 	Button quitButton;
@@ -46,6 +51,13 @@ public class VeganLand extends ApplicationAdapter {
 
 	Texture menuScreen;
 	Texture background;
+
+	BitmapFont font;
+	FreeTypeFontGenerator fontGenerator;
+	FreeTypeFontParameter parameter;
+	GlyphLayout layout;
+	float scoreStringWidth;
+	float scoreStringHeight;
 
 	@Override
 	public void create () {
@@ -67,7 +79,7 @@ public class VeganLand extends ApplicationAdapter {
 		pausedResumeButton = new Button(GAME_SIZE[0] / 2, GAME_SIZE[1] / 2 - 100, "Resume", 1.2f, true);
 		pausedMenuButton = new Button(GAME_SIZE[0] / 2, GAME_SIZE[1] / 2 + 100, "Menu", 1.2f, true);
 
-		restartButton = new Button(GAME_SIZE[0] / 2, GAME_SIZE[1] / 2, "Restart", 1.2f, true);
+		restartButton = new Button(GAME_SIZE[0] / 2, GAME_SIZE[1] / 2 - 100, "Restart", 1.2f, true);
 
 		backLevelsButton = new Button(100, 1000, "Back", 1, true);
 
@@ -93,6 +105,20 @@ public class VeganLand extends ApplicationAdapter {
             throw new RuntimeException(e);
         }
         player = map.getPlayer();
+
+		// Font
+		fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Silkscreen-Regular.ttf"));
+		parameter = new FreeTypeFontParameter();
+		parameter.size = (int) (40);
+		parameter.color = Color.WHITE;
+		parameter.borderColor = Color.BLACK;
+		parameter.borderWidth = 3f;
+		parameter.borderStraight = false;
+		font = fontGenerator.generateFont(parameter);
+
+		layout = new GlyphLayout(font, scoreString);
+		this.scoreStringWidth = layout.width;
+		this.scoreStringHeight = layout.height;
 	}
 
 	public void updateEnemies(SpriteBatch batch) {
@@ -144,8 +170,15 @@ public class VeganLand extends ApplicationAdapter {
 
 			// Map
 			map.draw(batch);
+
 			// Flag
 			flag.sprite.draw(batch);
+
+			// Draw level string
+			font.draw(batch, levelString, levelStringOffset, GAME_SIZE[1] - levelStringOffset);
+
+			// Draw score
+			font.draw(batch, scoreString, GAME_SIZE[0] - scoreStringOffset - scoreStringWidth, GAME_SIZE[1] - scoreStringOffset);
 
 			// Player
 			if (!isGameOver && !gameState.equals("paused")) {
@@ -174,6 +207,7 @@ public class VeganLand extends ApplicationAdapter {
 
 			if (gameState.equals("restart")) {
 				restartButton.run(batch);
+				pausedMenuButton.run(batch);
 			}
 		}
 
@@ -213,7 +247,7 @@ public class VeganLand extends ApplicationAdapter {
 			}
 		}
 
-		if (gameState.equals("paused")) {
+		if (gameState.equals("paused") || gameState.equals("restart")) {
 			if (pausedMenuButton.isClicked) {
 				gameState = "menu";
 				return;
@@ -253,6 +287,7 @@ public class VeganLand extends ApplicationAdapter {
 	public static void changeLevel() throws IOException {
 		map = new Map();
 		map.loadLevel("VeganLand-" + level);
+		VeganLand.levelString = "Level " + level;
 	}
 	
 	@Override

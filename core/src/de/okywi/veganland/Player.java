@@ -248,6 +248,8 @@ public class Player {
                     isJumping = true;
                     isGrounded = false;
                     isInvincible = false;
+                    VeganLand.score += 1;
+                    VeganLand.scoreString = "Score " + VeganLand.score;
                 } else {
                     if (!isInvincible) {
                         health -= 1;
