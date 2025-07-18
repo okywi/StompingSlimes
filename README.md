@@ -12,7 +12,7 @@ ESC to pause
 Stomp on the slimes! c:
 ```
 ## Run
-Important: You need to use Java 17
+**Important: You need to use Java 17**
 ```
 ./gradlew desktop:run
 
