@@ -23,5 +23,4 @@ Stomp on the slimes! c:
 **Important: You need to use Java 17**
 ```
 ./gradlew desktop:run
-
 ```
