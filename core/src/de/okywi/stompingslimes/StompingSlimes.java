@@ -18,7 +18,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class StompingSlimes extends ApplicationAdapter {
-	public static int[] SCREEN_SIZE = {1920, 1080};
 	public static int[] GAME_SIZE = {1920, 1080};
 
 	OrthographicCamera camera;
@@ -106,7 +105,7 @@ public class StompingSlimes extends ApplicationAdapter {
 		// Font
 		fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Silkscreen-Regular.ttf"));
 		parameter = new FreeTypeFontParameter();
-		parameter.size = (int) (40);
+		parameter.size = 40;
 		parameter.color = Color.WHITE;
 		parameter.borderColor = Color.BLACK;
 		parameter.borderWidth = 3f;
