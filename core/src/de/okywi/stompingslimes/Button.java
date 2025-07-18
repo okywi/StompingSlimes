@@ -1,4 +1,4 @@
-package de.okywi.veganland;
+package de.okywi.stompingslimes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -38,7 +38,7 @@ public class Button {
         rect = new Rectangle();
         rect.setRect(x - (texture.getWidth() * sizeMultiplier / 2), y - (texture.getHeight() * sizeMultiplier / 2), texture.getWidth() * sizeMultiplier, texture.getHeight() * sizeMultiplier);
         sprite = new Sprite(texture);
-        sprite.setPosition(rect.x, VeganLand.GAME_SIZE[1] - rect.y - rect.height);
+        sprite.setPosition(rect.x, StompingSlimes.GAME_SIZE[1] - rect.y - rect.height);
         sprite.setSize(rect.width, rect.height);
 
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Silkscreen-Regular.ttf"));

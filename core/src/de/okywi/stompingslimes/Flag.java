@@ -1,4 +1,4 @@
-package de.okywi.veganland;
+package de.okywi.stompingslimes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -52,19 +52,19 @@ public class Flag {
     }
 
     public void drawText(SpriteBatch batch) {
-        if (VeganLand.player.playerRect.overlaps(rect)) {
+        if (StompingSlimes.player.playerRect.overlaps(rect)) {
             font.draw(batch, text, rect.x + (rect.width / 2) - textWidth / 2, rect.y - textOffset);
         }
     }
 
     public void playerCollision() {
-        if (VeganLand.player.playerRect.overlaps(rect)) {
+        if (StompingSlimes.player.playerRect.overlaps(rect)) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
                 try {
-                    VeganLand.level += 1;
-                    VeganLand.changeLevel();
+                    StompingSlimes.level += 1;
+                    StompingSlimes.changeLevel();
                 } catch (IOException e) {
-                    VeganLand.gameState = "menu";
+                    StompingSlimes.gameState = "menu";
                 }
             }
         }

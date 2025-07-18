@@ -1,14 +1,10 @@
-package de.okywi.veganland;
+package de.okywi.stompingslimes;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Map {
     public static int[][] map;
@@ -27,10 +23,10 @@ public class Map {
     public void loadLevel(String mapName) throws IOException {
         map = loadMap(mapName);
         MAP_HEIGHT = map.length;
-        TILE_SIZE = (VeganLand.GAME_SIZE[1] / MAP_HEIGHT);
+        TILE_SIZE = (StompingSlimes.GAME_SIZE[1] / MAP_HEIGHT);
         createTiles();
         createEnemy();
-        VeganLand.player = getPlayer();
+        StompingSlimes.player = getPlayer();
     }
 
     public int[][] loadMap(String mapName) throws IOException {
@@ -75,7 +71,7 @@ public class Map {
                     mapTiles.add(tile);
                 }
                 if (type == 255) {
-                    VeganLand.flag = new Flag((x + xOffset) * TILE_SIZE, ((map.length - 1) - y) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                    StompingSlimes.flag = new Flag((x + xOffset) * TILE_SIZE, ((map.length - 1) - y) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
                 }
             }
         }

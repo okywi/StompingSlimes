@@ -4,8 +4,8 @@
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 	<inherits name='com.badlogic.gdx.physics.box2d.box2d-gwt' />
 
-	<inherits name='VeganLand' />
-	<entry-point class='de.okywi.veganland.client.HtmlLauncher' />
+	<inherits name='StompingSlimes' />
+	<entry-point class='de.okywi.stompingslimes.client.HtmlLauncher' />
 	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
 	<set-configuration-property name="gdx.assetpath" value="../assets" />
 	<set-property name="user.agent" value="gecko1_8, safari"/>

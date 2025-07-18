@@ -1,12 +1,10 @@
-package de.okywi.veganland;
+package de.okywi.stompingslimes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -35,7 +33,7 @@ public class Player {
     // Collision
     boolean collidesLeft = false;
     boolean collidesRight = false;
-    int scrollBorder = VeganLand.GAME_SIZE[0] / 3;
+    int scrollBorder = StompingSlimes.GAME_SIZE[0] / 3;
 
     // Animations
     Texture[] runTextures = new Texture[2];
@@ -129,7 +127,7 @@ public class Player {
     }
 
     public boolean insideNoScrollingArea() {
-        if (playerRect.x + movement.x > scrollBorder && playerRect.x < VeganLand.GAME_SIZE[0] - scrollBorder - movement.x) {
+        if (playerRect.x + movement.x > scrollBorder && playerRect.x < StompingSlimes.GAME_SIZE[0] - scrollBorder - movement.x) {
             return true;
         }
         return false;
@@ -171,8 +169,8 @@ public class Player {
 
         // Check death
         if (playerRect.y < -height) {
-            VeganLand.isGameOver = true;
-            VeganLand.gameState = "restart";
+            StompingSlimes.isGameOver = true;
+            StompingSlimes.gameState = "restart";
         }
 
         collidesLeft = false;
@@ -248,16 +246,16 @@ public class Player {
                     isJumping = true;
                     isGrounded = false;
                     isInvincible = false;
-                    VeganLand.score += 1;
-                    VeganLand.scoreString = "Score " + VeganLand.score;
+                    StompingSlimes.score += 1;
+                    StompingSlimes.scoreString = "Score " + StompingSlimes.score;
                 } else {
                     if (!isInvincible) {
                         health -= 1;
                         healthBarSprite.setTexture(new Texture(Gdx.files.internal("player/healthbar-" + health + ".png")));
 
                         if (health == 0)  {
-                            VeganLand.isGameOver = true;
-                            VeganLand.gameState = "restart";
+                            StompingSlimes.isGameOver = true;
+                            StompingSlimes.gameState = "restart";
                             return;
                         }
 
@@ -284,8 +282,8 @@ public class Player {
             enemy.updateSprite();
         }
 
-        VeganLand.flag.rect.x -= dx;
-        VeganLand.flag.updatePosition();
+        StompingSlimes.flag.rect.x -= dx;
+        StompingSlimes.flag.updatePosition();
     }
 
     public void updateSprite() {

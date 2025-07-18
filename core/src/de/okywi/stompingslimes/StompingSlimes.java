@@ -1,4 +1,4 @@
-package de.okywi.veganland;
+package de.okywi.stompingslimes;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -9,18 +9,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
-public class VeganLand extends ApplicationAdapter {
+public class StompingSlimes extends ApplicationAdapter {
 	public static int[] SCREEN_SIZE = {1920, 1080};
 	public static int[] GAME_SIZE = {1920, 1080};
 
@@ -255,10 +252,10 @@ public class VeganLand extends ApplicationAdapter {
 		}
 
 		if (pausedResumeButton.isClicked || Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			if (VeganLand.gameState.equals("paused")) {
-				VeganLand.gameState = "playing";
-			} else if (VeganLand.gameState.equals("playing")) {
-				VeganLand.gameState = "paused";
+			if (StompingSlimes.gameState.equals("paused")) {
+				StompingSlimes.gameState = "playing";
+			} else if (StompingSlimes.gameState.equals("playing")) {
+				StompingSlimes.gameState = "paused";
 			}
 			pausedResumeButton.isClicked = false; // Fix weird bug where pausedResumeButton is still clicked
 			return;
@@ -286,9 +283,10 @@ public class VeganLand extends ApplicationAdapter {
 
 	public static void changeLevel() throws IOException {
 		map = new Map();
-		System.out.println(level);
-		map.loadLevel("VeganLand-" + level);
-		VeganLand.levelString = "Level " + level;
+		map.loadLevel("Level-" + level);
+		StompingSlimes.levelString = "Level " + level;
+		StompingSlimes.score = 0;
+		StompingSlimes.scoreString = "Score " + StompingSlimes.score;
 	}
 	
 	@Override
