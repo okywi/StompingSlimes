@@ -21,11 +21,11 @@ public class Player {
     boolean isGrounded = false;
     boolean isRunning = false;
     boolean isFlipped = false;
-    float jumpHeight = 38f;
+    float jumpHeight = 25f;
     float jumpVelocity = jumpHeight;
-    float acceleration = 1f;
-    float speedMax = 12f;
-    float gravity = -3.5f;
+    float acceleration = 0.8f;
+    float speedMax = 8f;
+    float gravity = -1.5f;
     Vector2 movement = new Vector2(0, 0);
 
     // Sprite
@@ -94,7 +94,7 @@ public class Player {
     public void handleInput() {
         double noMoveTime = System.currentTimeMillis() - invincibleTimer;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && noMoveTime > 500) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && noMoveTime > 500) {
             if (isGrounded && !isJumping) {
                 isJumping = true;
                 isGrounded = false;

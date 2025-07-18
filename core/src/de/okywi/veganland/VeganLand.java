@@ -286,6 +286,7 @@ public class VeganLand extends ApplicationAdapter {
 
 	public static void changeLevel() throws IOException {
 		map = new Map();
+		System.out.println(level);
 		map.loadLevel("VeganLand-" + level);
 		VeganLand.levelString = "Level " + level;
 	}
