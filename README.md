@@ -4,11 +4,11 @@ A tile based 2D platformer written in Java using the libgdx game development lib
 ![start menu](platformer.png)
 
 ## Features
-- [ ] Multiple levels
-- [ ] Level picker
-- [ ] Pause menu
-- [ ] Enemies
-- [ ] Tiling system
+- [x] Multiple levels
+- [x] Level picker
+- [x] Pause menu
+- [x] Enemies
+- [x] Tiling system
 
 ## How to use
 ```
